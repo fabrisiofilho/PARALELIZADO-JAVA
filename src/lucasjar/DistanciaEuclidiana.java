@@ -40,46 +40,61 @@ public class DistanciaEuclidiana {
         int part3 = valor*3;
         int part4 = valor*4;
         
-        new Thread() {
+        Thread T1 = new Thread() {
             @Override
             public void run() {
                 processoCalcular(0, part1, qtdCasa);
             }
             
-        }.start();  
+        };
         
-        new Thread() {
+        Thread T2 = new Thread() {
             @Override
             public void run() {
-                processoCalcular(part1+1, part2, qtdCasa);
+                processoCalcular(part1, part2, qtdCasa);
             }
             
-        }.start();   
+        }; 
                 
-        new Thread() {
+        Thread T3 = new Thread() {
             @Override
             public void run() {
-                processoCalcular(part2+1, part3, qtdCasa);
+                processoCalcular(part2, part3, qtdCasa);
             }
             
-        }.start();  
+        }; 
                         
-        new Thread() {
+        Thread T4 = new Thread() {
             @Override
             public void run() {
-                processoCalcular(part3+1, part4, qtdCasa);
-                try {
-                    gravaResultadosNoArquivo();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                processoCalcular(part3, part4, qtdCasa);
             }
             
-        }.start(); 
+        }; 
+        
+        T1.start();
+        T2.start();
+        T3.start();
+        T4.start();
+        
+        try {
+            T1.join();
+            T2.join();
+            T3.join();
+            T4.join(); 
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        
+        try {
+            gravaResultadosNoArquivo();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     private void processoCalcular(int valorInicio, int valorFinal, int qtdCasa) {
-        for (int i = 0; i < (valorFinal); i++) {
+        for (int i = valorInicio; i < valorFinal; i++) {
             double menor = Double.MAX_VALUE; 
             
             int posicao = 0;
