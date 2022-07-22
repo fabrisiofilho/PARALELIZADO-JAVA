@@ -1,0 +1,9 @@
+
+n
+java:S2095"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(¹®Ùœÿÿÿÿÿ8À§¼Â¢0
+T
+java:S2589"7Remove this expression which always evaluates to "true"(õôØß8À§¼Â¢0
+V
+java:S1118":Add a private constructor to hide the implicit public one.(²š‚8Æ§¼Â¢0
+H
+java:S1168#"+Return an empty collection instead of null.(¥¹ï8ş§¼Â¢0
